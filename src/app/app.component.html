@@ -1,0 +1,77 @@
+<div class="container">
+    <h1>{{title}}</h1>
+    <form [formGroup]="personForm" (ngSubmit)="submitPersonForm()">
+        <table class="table-bordered">
+
+            <tr class="form-group">
+                <td>ID</td>
+                <td>
+                    <input type="text" formControlName="id" class="form-control" placeholder="user id">
+                </td>
+            </tr>
+
+            <tr class="form-group">
+                <td>Name</td>
+                <td>
+                    <input type="text" formControlName="name" class="form-control" placeholder="name">
+                </td>
+            </tr>
+
+            <tr class="form-group">
+                <td>Email ID</td>
+                <td>
+                    <input type="email" formControlName="email" class="form-control" placeholder="email id">
+                </td>
+            </tr>
+
+            <tr class="form-group">
+                <td>Age</td>
+                <td>
+                    <input type="text" formControlName="age" class="form-control" placeholder="age">
+                </td>
+            </tr>
+
+            <tr class="form-group">
+                <td colspan="2" align="center">
+                    <input type="submit" [disabled]="personForm.invalid" class="btn btn-primary" value="Add"> &nbsp;
+                    <button type="button" (click)="resetForm()" class="btn btn-primary">Reset</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <br>
+
+    <div>
+        <span style="color:blue;">{{message}}</span>
+    </div>
+
+    <br>
+    <h1>Display All Users:</h1>
+    <table class="table-bordered table-hover">
+        <caption>List of persons</caption>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let person of persons | async">
+                <td>{{person.id}}</td>
+                <td>{{person.name}}</td>
+                <td>{{person.email}}</td>
+                <td>{{person.age}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" (click)="getPersonByPersonId(person.id)">Edit</button> &nbsp;
+                    <button type="button" class="btn btn-primary" (click)="deletePersonByPersonId(person.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</div>
