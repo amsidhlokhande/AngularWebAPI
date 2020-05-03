@@ -17,11 +17,6 @@ export class AppComponent implements OnInit {
   persons: Observable<Person[]>; //Creating object of Observable instead of actual object which was used in subscribe method.
   message: string;
   personIdToUpdate: number = null;
-
-
-
-
-
   constructor ( private formBuilder: FormBuilder, private personService: PersonService ) {
     this.personForm = this.formBuilder.group(
       {
